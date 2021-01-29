@@ -1,0 +1,27 @@
+{
+  "name": "uni-lb-tabbar",
+  "version": "1.0.0",
+  "description": "uniapp自定义tabbar。",
+  "main": "components/lb-tabbar",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liub1934/uni-lb-tabbar.git"
+  },
+  "keywords": [
+    "uni-lb-tabbar"
+  ],
+  "author": "https://ext.dcloud.net.cn/plugin?id=1111",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/liub1934/uni-lb-tabbar/issues"
+  },
+  "homepage": "https://github.com/liub1934/uni-lb-tabbar#readme",
+  "standard": {
+    "globals": {
+      "uni": false
+    }
+  }
+}

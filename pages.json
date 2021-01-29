@@ -1,0 +1,58 @@
+{
+	"pages": [
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "uni-lb-tabbar"
+			}
+		},
+		{
+			"path": "pages/demos/demo1/demo1",
+			"style": {
+				"navigationBarTitleText": "基本使用(icon图标)"
+			}
+		},
+		{
+			"path": "pages/demos/demo2/demo2",
+			"style": {
+				"navigationBarTitleText": "基本使用(图片图标)"
+			}
+		},
+		{
+			"path": "pages/demos/demo3/demo3",
+			"style": {
+				"navigationBarTitleText": "角标圆点及数字"
+			}
+		},
+		{
+			"path": "pages/demos/demo4/demo4",
+			"style": {
+				"navigationBarTitleText": "凸起"
+			}
+		},
+		{
+			"path": "pages/demos/demo5/demo5",
+			"style": {
+				"navigationBarTitleText": "简单动画效果"
+			}
+		},
+		{
+			"path": "pages/demos/demo6/demo6",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-lb-tabbar",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"easycom": {
+		"autoscan": true,
+		"custom": {
+			"lb-tabbar-item": "@/components/lb-tabbar/lb-tabbar-item.vue"
+		}
+	}
+}

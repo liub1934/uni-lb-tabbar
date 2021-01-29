@@ -1,0 +1,116 @@
+<template>
+  <view :class="[
+      'lb-tabbar-item',
+      'animate__animated',
+      isActive ? 'lb-tabbar-item--active' : ''
+    ]"
+    :style="{
+      height: tabbarInfo.height
+    }"
+    @tap="handleTap">
+    <view :class="[
+        'lb-tabbar-item__icon',
+        `lb-tabbar-item__icon--${raisede ? 'raisede' : 'default'}`,
+        isAnimate ? `animate__animated animate__${tabbarInfo.animate}` : ''
+      ]"
+      :style="{
+        transform: raisede ? `translateY(-${ty}px) scale(2)` : ''
+      }">
+      <image v-if="isImage"
+        class="lb-tabbar-item__image"
+        :src="icon"
+        :style="{
+          width: tabbarInfo.iconSize,
+          height: tabbarInfo.iconSize
+        }">
+      </image>
+      <view v-else
+        :class="[
+          'lb-tabbar-icon',
+          iconPrefix,
+          `${iconPrefix}-${icon}`,
+          isActive ? 'lb-tabbar-item__icon--active' : ''
+        ]"
+        :style="{
+          fontSize: tabbarInfo.iconSize,
+          color: isActive ? tabbarInfo.activeColor : tabbarInfo.inactiveColor
+        }">
+      </view>
+      <text v-if="dot"
+        :class="[
+          'lb-tabbar-item__dot',
+          info || info === 0 ? 'lb-tabbar-item__dot--info' : ''
+        ]"
+        :style="{
+          backgroundColor: tabbarInfo.dotColor
+        }">{{ info || info === 0 ? info : '' }}</text>
+    </view>
+    <text :class="[
+        'lb-tabbar-item__text',
+        isActive ? 'lb-tabbar-item__text--active' : ''
+      ]"
+      :style="{
+        fontSize: tabbarInfo.textSize,
+        lineHeight: tabbarInfo.textHeight,
+        color: isActive
+          ? tabbarInfo.activeTextColor || tabbarInfo.activeColor
+          : tabbarInfo.inactiveTextColor || tabbarInfo.inactiveColor
+      }">
+      <slot></slot>
+    </text>
+  </view>
+</template>
+
+<script>
+import './animate.scss'
+import './style.scss'
+import { getPx } from './utils'
+export default {
+  props: {
+    name: [String, Number],
+    icon: String,
+    iconPrefix: String,
+    dot: Boolean,
+    info: [String, Number],
+    raisede: Boolean
+  },
+  data () {
+    return {
+      height: '',
+      tabbarInfo: {}
+    }
+  },
+  computed: {
+    isImage () {
+      return this.icon.indexOf('/') > -1
+    },
+    isActive () {
+      return this.tabbar.value === this.name
+    },
+    isAnimate () {
+      return (
+        this.isActive &&
+        this.tabbarInfo.animate &&
+        !(this.raisede && this.tabbarInfo.closeAnimateOnRaisede)
+      )
+    },
+    ty () {
+      const height = getPx(this.tabbar.height)
+      const textHeight = getPx(this.tabbar.textHeight)
+      return height / 2 - textHeight / 2
+    }
+  },
+  inject: ['tabbar'],
+  created () {
+    this.tabbarInfo = this.tabbar._props
+    this.tabbar.tabbarItems.push(this._props)
+  },
+  methods: {
+    handleTap () {
+      this.tabbar.active = this.name
+      this.tabbar.activeItem = this._props
+      this.$emit('click', this._props)
+    }
+  }
+}
+</script>

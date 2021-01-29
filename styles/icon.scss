@@ -1,0 +1,28 @@
+@font-face {
+  font-family: 'iconfont';
+  src: url('https://at.alicdn.com/t/font_2351863_yh1vdzvyox.ttf?t=1611731450500') format('truetype');
+}
+
+.iconfont {
+  font-family: 'iconfont' !important;
+}
+
+.iconfont-cart:before {
+  content: "\e674";
+}
+
+.iconfont-notice:before {
+  content: "\e600";
+}
+
+.iconfont-plus:before {
+  content: "\e66f";
+}
+
+.iconfont-mine:before {
+  content: "\e607";
+}
+
+.iconfont-home:before {
+  content: "\e623";
+}
