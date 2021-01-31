@@ -3,7 +3,7 @@
     scroll-y
     :style="{
     display: visible ? 'block' : 'none',
-    height: `calc(100vh - ${tabbarHeight}px)`
+    height: height
   }">
     <view>通知</view>
     <view v-if="!isGetData">模拟数据加载中...</view>

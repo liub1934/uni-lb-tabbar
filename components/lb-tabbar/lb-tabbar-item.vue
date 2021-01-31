@@ -74,6 +74,7 @@ export default {
     info: [String, Number],
     raisede: Boolean
   },
+  inject: ['tabbar'],
   data () {
     return {
       height: '',
@@ -82,10 +83,10 @@ export default {
   },
   computed: {
     isImage () {
-      return this.icon.indexOf('/') > -1
+      return this.icon && this.icon.indexOf('/') > -1
     },
     isActive () {
-      return this.tabbar.value === this.name
+      return this.tabbarInfo.value === this.name
     },
     isAnimate () {
       return (
@@ -95,12 +96,11 @@ export default {
       )
     },
     ty () {
-      const height = getPx(this.tabbar.height)
-      const textHeight = getPx(this.tabbar.textHeight)
+      const height = getPx(this.tabbarInfo.height)
+      const textHeight = getPx(this.tabbarInfo.textHeight)
       return height / 2 - textHeight / 2
     }
   },
-  inject: ['tabbar'],
   created () {
     this.tabbarInfo = this.tabbar._props
     this.tabbar.tabbarItems.push(this._props)

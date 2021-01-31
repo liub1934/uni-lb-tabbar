@@ -112,7 +112,11 @@ export default {
   created () {
     const res = uni.getSystemInfoSync()
     const { model, safeArea } = res
-    if (model.indexOf('iPhone') > -1 && safeArea.top > 20) {
+    if (
+      (model.indexOf('iPhone') > -1 && safeArea && safeArea.top > 20) ||
+      model.indexOf('iPhone X') > -1 ||
+      model.indexOf('iPhone 1') > -1
+    ) {
       this.isIphoneX = true
     }
     this.getTabbarHeight()

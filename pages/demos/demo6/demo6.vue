@@ -3,19 +3,19 @@
     <view class="layout-page">
       <!-- 首页 -->
       <home :visible="active === 'home'"
-        :tabbar-height="tabbarHeight">
+        :height="height">
       </home>
       <!-- 购物车 -->
       <cart :visible="active === 'cart'"
-        :tabbar-height="tabbarHeight">
+        :height="height">
       </cart>
       <!-- 通知 -->
       <notice :visible="active === 'notice'"
-        :tabbar-height="tabbarHeight">
+        :height="height">
       </notice>
       <!-- 我的 -->
       <mine :visible="active === 'mine'"
-        :tabbar-height="tabbarHeight">
+        :height="height">
       </mine>
     </view>
     <!-- 此处因为不需要点击凸起的发布按钮进行页面变化或跳转，故将v-model="active"修改成:value="active" -->
@@ -55,6 +55,7 @@ export default {
     return {
       active: '',
       animate: 'zoomIn',
+      height: '',
       tabbarHeight: '',
       tabbars: [
         {
@@ -94,7 +95,10 @@ export default {
     this.active = query.tab || 'home'
   },
   onReady () {
+    const res = uni.getSystemInfoSync()
+    const { windowHeight } = res
     this.tabbarHeight = this.$refs.tabbar.tabbarHeight
+    this.height = windowHeight - this.tabbarHeight + 'px'
   },
   methods: {
     handleChange (e) {
@@ -107,7 +111,7 @@ export default {
       console.log('click::', e)
       if (e.name === 'plus') {
         uni.showToast({
-          title: e.name,
+          title: '发布',
           icon: 'none'
         })
       }
