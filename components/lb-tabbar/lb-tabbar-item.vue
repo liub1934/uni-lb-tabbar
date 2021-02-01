@@ -62,8 +62,6 @@
 </template>
 
 <script>
-import './animate.scss'
-import './style.scss'
 import { getPx } from './utils'
 export default {
   props: {
@@ -114,3 +112,8 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+@import "./style.scss";
+@import "./animate.scss";
+</style>

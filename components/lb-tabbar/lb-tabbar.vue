@@ -2,7 +2,8 @@
   <view class="lb-tabbar">
     <view :class="['lb-tabbar-content', fixed ? 'lb-tabbar--fixed' : '']"
       :style="{
-        backgroundColor: bgColor
+        backgroundColor: bgColor,
+        paddingBottom: `${safeAreaHeight}px`
       }">
       <slot></slot>
       <view v-if="border"
@@ -22,7 +23,7 @@
 </template>
 
 <script>
-import './style.scss'
+const SAFE_AREA_INSET_BOTTOM = 34
 import { getPx } from './utils'
 export default {
   props: {
@@ -89,7 +90,8 @@ export default {
       activeItem: {},
       tabbarItems: [],
       hasRaisede: false,
-      isIphoneX: false
+      isIphoneX: false,
+      safeAreaHeight: 0
     }
   },
   computed: {
@@ -97,10 +99,10 @@ export default {
       return this.tabbarItems.length
     },
     tabbarHeight () {
+      this.safeAreaHeight = this.isIphoneX ? SAFE_AREA_INSET_BOTTOM : 0 // 苹果X等机型安全区高度
       const height = getPx(this.height) // 默认高度
-      const safeAreaHeight = this.isIphoneX ? 34 : 0 // 苹果X等机型安全区高度
       const raisedeHeight = this.hasRaisede ? getPx(this.iconSize) : 0 // 凸起高度
-      const tabbarHeight = height + safeAreaHeight + raisedeHeight // 整体高度
+      const tabbarHeight = height + this.safeAreaHeight + raisedeHeight // 整体高度
       return tabbarHeight
     }
   },
@@ -147,3 +149,7 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+@import "./style.scss";
+</style>

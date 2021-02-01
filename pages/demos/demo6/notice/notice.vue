@@ -1,5 +1,5 @@
 <template>
-  <view class="page"
+  <scroll-view class="page"
     scroll-y
     :style="{
     display: visible ? 'block' : 'none',
@@ -11,14 +11,14 @@
       :key="item">
       <text>通知页面的第{{item }}条数据</text>
     </view>
-  </view>
+  </scroll-view>
 </template>
 
 <script>
 export default {
   props: {
     visible: Boolean,
-    tabbarHeight: String
+    height: String
   },
   data () {
     return {
@@ -50,9 +50,3 @@ export default {
 }
 
 </script>
-
-<style lang="scss" scoped>
-.page {
-  overflow: auto;
-}
-</style>
