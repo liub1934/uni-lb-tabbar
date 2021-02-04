@@ -27,14 +27,48 @@
 Github：[点击前往](https://github.com/liub1934/uni-lb-tabbar)
 
 <!-- 插件市场：[点击前往](https://ext.dcloud.net.cn/plugin?id=1111)   -->
-<!-- H5 Demo：[点击预览](https://github.liubing.me/uni-lb-tabbar) -->
+
+H5 Demo：[点击预览](https://github.liubing.me/uni-lb-tabbar)
 
 > 如果问题最好去 github 反馈，插件市场评论区留下五星好评即可， [点我去反馈](https://github.com/liub1934/uni-lb-tabbar/issues/new)  
 > 最好提供一下使用的什么端，数据结构及大概的代码，我好复现找问题，不要直接提`怎么xxx报错了`等没意义的问题，神仙也不知道你为啥报错了。
 
 ## 兼容性
 
-App + H5 + 各平台小程序（头条小程序及 NVue 暂不支持）
+App + H5 + 各平台小程序（头条小程序及 Nvue 暂不支持）
+
+## 引入插件
+
+推荐使用 easycom 引入
+
+导入插件后再`pages.json`加上如下配置：
+
+```json
+"easycom": {
+  "autoscan": true,
+  "custom": {
+    "lb-tabbar-item": "@/components/lb-tabbar/lb-tabbar-item.vue"
+  }
+}
+```
+
+<!-- npm 安装引入：
+
+```shell
+npm install uni-lb-tabbar
+```
+
+npm 安装完成后再`pages.json`加上如下配置：
+
+```json
+"easycom": {
+  "autoscan": true,
+  "custom": {
+    "lb-tabbar": "uni-lb-tabbar/lb-tabbar.vue",
+    "lb-tabbar-item": "uni-lb-tabbar/lb-tabbar-item.vue"
+  }
+}
+``` -->
 
 ## Props 参数
 
@@ -50,7 +84,7 @@ App + H5 + 各平台小程序（头条小程序及 NVue 暂不支持）
 | dot-color                | 小红点颜色                                               | String        | -                                        | #F56C6C |
 | fixed                    | 是否固定在底部                                           | Boolean       | true/false                               | true    |
 | placeholder              | 是否生成等高的占位块                                     | Boolean       | true/false                               | true    |
-| animate                  | 图标动画                                                 | String        | zoomIn/bounce/rubberBand/bounceIn/fadeIn | -       |
+| animate                  | 图标动画（引用了部分 Animate.css 库的动画效果）          | String        | zoomIn/bounce/rubberBand/bounceIn/fadeIn | -       |
 | close-animate-on-raisede | 是否关闭凸起图标动画                                     | Boolean       | true/false                               | true    |
 | border                   | 是否展示边框                                             | Boolean       | true/false                               | true    |
 | border-color             | 边框颜色                                                 | String        | -                                        | #DCDFE6 |
