@@ -134,7 +134,9 @@ export default {
     },
     active (newVal) {
       this.$emit('input', newVal)
-      this.$emit('change', this.activeItem)
+      setTimeout(() => {
+        this.$emit('change', this.activeItem)
+      }, 0)
     },
     tabbarItemsLength () {
       if (this.hasRaisede) return

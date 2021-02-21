@@ -83,6 +83,9 @@ export default {
     isImage () {
       return this.icon && this.icon.indexOf('/') > -1
     },
+    active () {
+      return this.tabbar.active
+    },
     isActive () {
       return this.tabbarInfo.value === this.name
     },
@@ -106,8 +109,17 @@ export default {
   methods: {
     handleTap () {
       this.tabbar.active = this.name
-      this.tabbar.activeItem = this._props
       this.$emit('click', this._props)
+    }
+  },
+  watch: {
+    active: {
+      handler (newVal) {
+        if (newVal === this.name) {
+          this.tabbar.activeItem = this._props
+        }
+      },
+      immediate: true
     }
   }
 }
