@@ -5,11 +5,12 @@
     display: visible ? 'block' : 'none',
     height: height
   }">
-    <view>通知</view>
+    <view>消息</view>
+    <button @click="handleClick">切换到首页</button>
     <view v-if="!isGetData">模拟数据加载中...</view>
     <view v-for="item in list"
       :key="item">
-      <text>通知页面的第{{item }}条数据</text>
+      <text>消息页面的第{{item }}条数据</text>
     </view>
   </scroll-view>
 </template>
@@ -35,6 +36,9 @@ export default {
         }
         this.isGetData = true
       }, 1000)
+    },
+    handleClick () {
+      this.$emit('change', 'home')
     }
   },
   watch: {

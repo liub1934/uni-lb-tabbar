@@ -1,21 +1,26 @@
 <template>
   <view class="content">
+    {{active}}
     <view class="layout-page">
       <!-- 首页 -->
       <home :visible="active === 'home'"
-        :height="height">
+        :height="height"
+        @change="handleTabChange">
       </home>
       <!-- 购物车 -->
       <cart :visible="active === 'cart'"
-        :height="height">
+        :height="height"
+        @change="handleTabChange">
       </cart>
-      <!-- 通知 -->
+      <!-- 消息 -->
       <notice :visible="active === 'notice'"
-        :height="height">
+        :height="height"
+        @change="handleTabChange">
       </notice>
       <!-- 我的 -->
       <mine :visible="active === 'mine'"
-        :height="height">
+        :height="height"
+        @change="handleTabChange">
       </mine>
     </view>
     <!-- 此处因为不需要点击凸起的发布按钮进行页面变化或跳转，故将v-model="active"修改成:value="active" -->
@@ -106,6 +111,9 @@ export default {
       if (e.name !== 'plus') {
         this.active = e.name
       }
+    },
+    handleTabChange (name) {
+      this.active = name
     },
     handleTabbarItemClick (e) {
       console.log('click::', e)

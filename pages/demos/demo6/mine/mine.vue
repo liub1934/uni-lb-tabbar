@@ -6,6 +6,7 @@
     height: height
   }">
     <view>我的</view>
+    <button @click="handleClick">切换到购物车</button>
     <view v-if="!isGetData">模拟数据加载中...</view>
     <view v-for="item in list"
       :key="item">
@@ -35,6 +36,9 @@ export default {
         }
         this.isGetData = true
       }, 1000)
+    },
+    handleClick () {
+      this.$emit('change', 'cart')
     }
   },
   watch: {
