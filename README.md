@@ -26,7 +26,7 @@
 
 Github：[点击前往](https://github.com/liub1934/uni-lb-tabbar)
 
-<!-- 插件市场：[点击前往](https://ext.dcloud.net.cn/plugin?id=1111)   -->
+插件市场：[点击前往](https://ext.dcloud.net.cn/plugin?id=4124)
 
 H5 Demo：[点击预览](https://github.liubing.me/uni-lb-tabbar)
 
@@ -51,24 +51,6 @@ App + H5 + 各平台小程序（头条小程序及 Nvue 暂不支持）
   }
 }
 ```
-
-<!-- npm 安装引入：
-
-```shell
-npm install uni-lb-tabbar
-```
-
-npm 安装完成后再`pages.json`加上如下配置：
-
-```json
-"easycom": {
-  "autoscan": true,
-  "custom": {
-    "lb-tabbar": "uni-lb-tabbar/lb-tabbar.vue",
-    "lb-tabbar-item": "uni-lb-tabbar/lb-tabbar-item.vue"
-  }
-}
-``` -->
 
 ## Props 参数
 
