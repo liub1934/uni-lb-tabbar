@@ -56,25 +56,25 @@ App + H5 + 各平台小程序（头条小程序及 Nvue 暂不支持）
 
 ### Tabbar Props
 
-| 参数                     | 说明                                                     | 类型          | 可选值                                   | 默认值  |
-| :----------------------- | :------------------------------------------------------- | ------------- | ---------------------------------------- | ------- |
-| v-model/value            | 选中标签的 name                                          | String/Number | -                                        | -       |
-| height                   | Tabbar 高度                                              | String        | -                                        | 50px    |
-| icon-size                | 图标大小                                                 | String        | -                                        | 22px    |
-| text-size                | 文字大小                                                 | String        | -                                        | 12px    |
-| text-height              | 文字高度                                                 | String        | -                                        | 18px    |
-| dot-color                | 小红点颜色                                               | String        | -                                        | #F56C6C |
-| fixed                    | 是否固定在底部                                           | Boolean       | true/false                               | true    |
-| placeholder              | 是否生成等高的占位块                                     | Boolean       | true/false                               | true    |
-| animate                  | 图标动画（引用了部分 Animate.css 库的动画效果）          | String        | zoomIn/bounce/rubberBand/bounceIn/fadeIn | -       |
-| close-animate-on-raisede | 是否关闭凸起图标动画                                     | Boolean       | true/false                               | true    |
-| border                   | 是否展示边框                                             | Boolean       | true/false                               | true    |
-| border-color             | 边框颜色                                                 | String        | -                                        | #DCDFE6 |
-| bg-color                 | 背景色，默认是白色背景                                   | String        | -                                        | #FFF    |
-| inactive-color           | 未选中标签的颜色                                         | String        | -                                        | #909399 |
-| active-color             | 选中标签的颜色                                           | String        | -                                        | #409EFF |
-| active-text-color        | 可单独定义未选中标签文字的颜色，不填则同`inactive-color` | String        | -                                        | -       |
-| active-text-color        | 可单独定义选中标签文字的颜色,不填则同`active-color`      | String        | -                                        | -       |
+| 参数                     | 说明                                                         | 类型          | 可选值                                   | 默认值  |
+| :----------------------- | :----------------------------------------------------------- | ------------- | ---------------------------------------- | ------- |
+| v-model/value            | 选中标签的 name                                              | String/Number | -                                        | -       |
+| height                   | Tabbar 高度                                                  | String        | -                                        | 50px    |
+| icon-size                | 图标大小                                                     | String        | -                                        | 22px    |
+| text-size                | 文字大小                                                     | String        | -                                        | 12px    |
+| text-height              | 文字高度                                                     | String        | -                                        | 18px    |
+| dot-color                | 小红点颜色                                                   | String        | -                                        | #F56C6C |
+| fixed                    | 是否固定在底部                                               | Boolean       | true/false                               | true    |
+| placeholder              | 是否生成等高的占位块                                         | Boolean       | true/false                               | true    |
+| animate                  | 图标动画（引用了部分 Animate.css 库的动画效果，nvue 不支持） | String        | zoomIn/bounce/rubberBand/bounceIn/fadeIn | -       |
+| close-animate-on-raisede | 是否关闭凸起图标动画                                         | Boolean       | true/false                               | true    |
+| border                   | 是否展示边框                                                 | Boolean       | true/false                               | true    |
+| border-color             | 边框颜色                                                     | String        | -                                        | #DCDFE6 |
+| bg-color                 | 背景色，默认是白色背景                                       | String        | -                                        | #FFF    |
+| inactive-color           | 未选中标签的颜色                                             | String        | -                                        | #909399 |
+| active-color             | 选中标签的颜色                                               | String        | -                                        | #409EFF |
+| active-text-color        | 可单独定义未选中标签文字的颜色，不填则同`inactive-color`     | String        | -                                        | -       |
+| active-text-color        | 可单独定义选中标签文字的颜色,不填则同`active-color`          | String        | -                                        | -       |
 
 ### TabbarItem Props
 
