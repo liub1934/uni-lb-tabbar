@@ -81,11 +81,12 @@ App + H5 + 各平台小程序（头条小程序及 Nvue 暂不支持）
 | 参数        | 说明                                                             | 类型          | 可选值     | 默认值 |
 | :---------- | :--------------------------------------------------------------- | ------------- | ---------- | ------ |
 | name        | 标签的 name 名称                                                 | String/Number | -          | -      |
+| text        | 标签底部文字，仅 nvue 支持，其他使用 slot 形式                   | String/Number | -          | -      |
 | icon        | icon 图标，可为图片地址，如果是 icon 图标不需要带前缀，如`icon-` | String        | -          | -      |
 | icon-prefix | icon 图标前缀                                                    | String        | -          | -      |
 | dot         | 是否显示小红点                                                   | Boolean       | true/false | -      |
-| info        | 图标右上角信息                                                   | String/Number | -          | -      |
-| raisede     | 图标是否凸出                                                     | Boolean       | true/false | -      |
+| info        | 图标右上角信息，nvue 文字显示有些问题                            | String/Number | -          | -      |
+| raisede     | 图标是否凸出，nvue 暂不支持                                      | Boolean       | true/false | -      |
 
 ## Tabbar Event
 
