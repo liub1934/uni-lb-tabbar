@@ -56,8 +56,8 @@ lb-tabbar-item {
 
 .lb-tabbar-icon {
   position: relative;
-  line-height: 1;
   /* #ifndef APP-NVUE */
+  line-height: 1;
   font-size: inherit;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
@@ -73,7 +73,9 @@ lb-tabbar-item {
   background-color: #fff;
   border-radius: 9999px;
   position: relative;
+  /* #ifndef APP-NVUE */
   z-index: 1;
+  /* #endif */
 }
 
 .lb-tabbar-item__dot {
@@ -86,12 +88,20 @@ lb-tabbar-item {
 }
 
 .lb-tabbar-item__dot--info {
+  /* #ifndef APP-NVUE */
   width: inherit;
   height: inherit;
   line-height: 1.2;
-  margin-top: 4px;
+  /* #endif */
+  /* #ifdef APP-NVUE */
+  height: 14px;
+  flex: 1;
+  /* #endif */
+  margin-top: 5px;
   font-size: 12px;
-  padding: 0 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  text-align: center;
   color: #fff;
   transform: translate(50%, -50%);
 }

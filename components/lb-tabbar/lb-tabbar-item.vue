@@ -24,7 +24,7 @@
           height: tabbarInfo.iconSize
         }">
       </image>
-      <view v-else
+      <text v-else
         :class="[
           'lb-tabbar-icon',
           iconPrefix,
@@ -34,8 +34,7 @@
         :style="{
           fontSize: tabbarInfo.iconSize,
           color: isActive ? tabbarInfo.activeColor : tabbarInfo.inactiveColor
-        }">
-      </view>
+        }">{{ iconCode }}</text>
       <text v-if="dot"
         :class="[
           'lb-tabbar-item__dot',
@@ -45,7 +44,9 @@
           backgroundColor: tabbarInfo.dotColor
         }">{{ info || info === 0 ? info : '' }}</text>
     </view>
-    <text :class="[
+
+    <!-- #ifndef APP-NVUE -->
+    <view :class="[
         'lb-tabbar-item__text',
         isActive ? 'lb-tabbar-item__text--active' : ''
       ]"
@@ -57,7 +58,22 @@
           : tabbarInfo.inactiveTextColor || tabbarInfo.inactiveColor
       }">
       <slot></slot>
-    </text>
+    </view>
+    <!-- #endif -->
+
+    <!-- #ifdef APP-NVUE -->
+    <text :class="[
+        'lb-tabbar-item__text',
+        isActive ? 'lb-tabbar-item__text--active' : ''
+      ]"
+      :style="{
+        fontSize: tabbarInfo.textSize,
+        lineHeight: tabbarInfo.textHeight,
+        color: isActive
+          ? tabbarInfo.activeTextColor || tabbarInfo.activeColor
+          : tabbarInfo.inactiveTextColor || tabbarInfo.inactiveColor
+      }">{{ text || '' }}</text>
+    <!-- #endif -->
   </view>
 </template>
 
@@ -66,6 +82,7 @@ import { getPx } from './utils'
 export default {
   props: {
     name: [String, Number],
+    text: [String, Number],
     icon: String,
     iconPrefix: String,
     dot: Boolean,
@@ -83,9 +100,6 @@ export default {
     isImage () {
       return this.icon && this.icon.indexOf('/') > -1
     },
-    active () {
-      return this.tabbar.active
-    },
     isActive () {
       return this.tabbarInfo.value === this.name
     },
@@ -100,6 +114,13 @@ export default {
       const height = getPx(this.tabbarInfo.height)
       const textHeight = getPx(this.tabbarInfo.textHeight)
       return height / 2 - textHeight / 2
+    },
+    iconCode () {
+      let code = ''
+			// #ifdef APP-NVUE
+			code = this.icon
+			// #endif
+      return code
     }
   },
   created () {
@@ -127,5 +148,7 @@ export default {
 
 <style lang="scss">
 @import "./style.scss";
+/* #ifndef APP-NVUE */
 @import "./animate.scss";
+/* #endif */
 </style>
