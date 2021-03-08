@@ -2,8 +2,7 @@
   <scroll-view class="page"
     scroll-y
     :style="{
-    display: visible ? 'block' : 'none',
-    height: height
+    display: visible ? 'block' : 'none'
   }">
     <view>我的</view>
     <button @click="handleClick">切换到购物车</button>
@@ -18,8 +17,7 @@
 <script>
 export default {
   props: {
-    visible: Boolean,
-    height: String
+    visible: Boolean
   },
   data () {
     return {

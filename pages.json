@@ -41,8 +41,53 @@
 			"style": {
 				"navigationBarTitleText": ""
 			}
+		},
+		{
+			"path": "pages/demos/demo7/home/home",
+			"style": {
+				"navigationBarTitleText": "首页"
+			}
+		},
+		{
+			"path": "pages/demos/demo7/cart/cart",
+			"style": {
+				"navigationBarTitleText": "购物车"
+			}
+		},
+		{
+			"path": "pages/demos/demo7/notice/notice",
+			"style": {
+				"navigationBarTitleText": "消息"
+			}
+		},
+		{
+			"path": "pages/demos/demo7/mine/mine",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
 		}
 	],
+	"tabBar": {
+		"color": "#FFFFFF",
+		"selectedColor": "#FFFFFF",
+		"backgroundColor": "#FFFFFF",
+		"borderStyle": "white",
+		"height": "0px",
+		"list": [
+			{
+				"pagePath": "pages/demos/demo7/home/home"
+			},
+			{
+				"pagePath": "pages/demos/demo7/cart/cart"
+			},
+			{
+				"pagePath": "pages/demos/demo7/notice/notice"
+			},
+			{
+				"pagePath": "pages/demos/demo7/mine/mine"
+			}
+		]
+	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",

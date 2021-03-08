@@ -40,17 +40,28 @@ export default {
           path: '/pages/demos/demo5/demo5'
         },
         {
-          title: '完整应用',
+          title: '完整应用-页面组件形式',
           path: '/pages/demos/demo6/demo6'
+        },
+        {
+          title: '完整应用-switchtab形式',
+          path: '/pages/demos/demo7/home/home',
+          type: 'switchtab'
         }
       ]
     }
   },
   methods: {
-    handleTap ({ path }) {
-      uni.navigateTo({
-        url: path
-      })
+    handleTap ({ path, type }) {
+      if (type === 'switchtab') {
+        uni.switchTab({
+          url: path
+        })
+      } else {
+        uni.navigateTo({
+          url: path
+        })
+      }
     }
   }
 }

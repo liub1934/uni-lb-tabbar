@@ -1,6 +1,5 @@
 <template>
   <view class="content">
-    {{active}}
     <view class="layout-page">
       <!-- 首页 -->
       <home :visible="active === 'home'"
@@ -141,3 +140,20 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.content {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+  .layout-page {
+    min-height: 0;
+    flex: 1;
+    /deep/ .page {
+      height: 100%;
+    }
+  }
+}
+</style>
