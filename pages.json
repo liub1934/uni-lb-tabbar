@@ -97,7 +97,7 @@
 	"easycom": {
 		"autoscan": true,
 		"custom": {
-			"lb-tabbar-item": "@/components/lb-tabbar/lb-tabbar-item.vue"
+			"lb-tabbar-item": "@/components/lb-tabbar/lb-tabbar-item"
 		}
 	}
 }
