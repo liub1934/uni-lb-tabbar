@@ -1,6 +1,9 @@
 <template>
   <view class="lb-tabbar">
-    <view :class="['lb-tabbar-content', fixed ? 'lb-tabbar--fixed' : '']"
+    <view :class="[
+        'lb-tabbar-content',
+        fixed ? 'lb-tabbar--fixed' : ''
+      ]"
       :style="{
         backgroundColor: bgColor,
         paddingBottom: `${safeAreaHeight}px`
@@ -9,7 +12,7 @@
       <view v-if="border"
         class="lb-tabbar-border"
         :style="{
-          borderColor: borderColor
+          backgroundColor: borderColor
         }">
       </view>
     </view>
@@ -82,7 +85,15 @@ export default {
       default: '#409EFF'
     },
     inactiveTextColor: String,
-    activeTextColor: String
+    activeTextColor: String,
+    safeAreaInsetBottom: {
+      type: Boolean,
+      default: true
+    },
+    hideTabbar: {
+      type: Boolean,
+      default: true
+    }
   },
   data () {
     return {
@@ -90,16 +101,17 @@ export default {
       activeItem: {},
       tabbarItems: [],
       hasRaisede: false,
-      isIphoneX: false,
-      safeAreaHeight: 0
+      isIphoneX: false
     }
   },
   computed: {
     tabbarItemsLength () {
       return this.tabbarItems.length
     },
+    safeAreaHeight () {
+      return this.isIphoneX && this.safeAreaInsetBottom ? SAFE_AREA_INSET_BOTTOM : 0 // 苹果X等机型安全区高度
+    },
     tabbarHeight () {
-      this.safeAreaHeight = this.isIphoneX ? SAFE_AREA_INSET_BOTTOM : 0 // 苹果X等机型安全区高度
       const height = getPx(this.height) // 默认高度
       const raisedeHeight = this.hasRaisede ? getPx(this.iconSize) : 0 // 凸起高度
       const tabbarHeight = height + this.safeAreaHeight + raisedeHeight // 整体高度
@@ -112,6 +124,9 @@ export default {
     }
   },
   created () {
+    if (this.hideTabbar) {
+      uni.hideTabBar()
+    }
     const res = uni.getSystemInfoSync()
     const { model, safeArea } = res
     if (
@@ -133,10 +148,9 @@ export default {
       this.active = newVal
     },
     active (newVal) {
+      this.activeItem = this.tabbarItems.find(item => item.name === newVal)
       this.$emit('input', newVal)
-      setTimeout(() => {
-        this.$emit('change', this.activeItem)
-      }, 0)
+      this.$emit('change', this.activeItem)
     },
     tabbarItemsLength () {
       if (this.hasRaisede) return

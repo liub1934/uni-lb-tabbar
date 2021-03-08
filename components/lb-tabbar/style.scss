@@ -14,20 +14,16 @@
   bottom: 0;
 }
 
-/* #ifndef APP-NVUE */
-
 .lb-tabbar-border {
+  height: 1px;
   position: absolute;
-  top: -50%;
-  right: -50%;
-  bottom: -50%;
-  left: -50%;
-  border-width: 1px 0;
-  border-style: solid;
-  pointer-events: none;
-  transform: scale(0.5);
+  left: 0;
+  right: 0;
+  top: 0;
+  transform: scaleY(0.5);
 }
 
+/* #ifndef APP-NVUE */
 lb-tabbar-item {
   flex: 1;
 }

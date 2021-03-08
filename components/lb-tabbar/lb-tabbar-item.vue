@@ -32,6 +32,9 @@
           isActive ? 'lb-tabbar-item__icon--active' : ''
         ]"
         :style="{
+					width: tabbarInfo.iconSize,
+					height: tabbarInfo.iconSize,
+					lineHeight: tabbarInfo.iconSize,
           fontSize: tabbarInfo.iconSize,
           color: isActive ? tabbarInfo.activeColor : tabbarInfo.inactiveColor
         }">{{ iconCode }}</text>
@@ -117,9 +120,9 @@ export default {
     },
     iconCode () {
       let code = ''
-			// #ifdef APP-NVUE
-			code = this.icon
-			// #endif
+      // #ifdef APP-NVUE
+      code = this.icon
+      // #endif
       return code
     }
   },
@@ -131,16 +134,6 @@ export default {
     handleTap () {
       this.tabbar.active = this.name
       this.$emit('click', this._props)
-    }
-  },
-  watch: {
-    active: {
-      handler (newVal) {
-        if (newVal === this.name) {
-          this.tabbar.activeItem = this._props
-        }
-      },
-      immediate: true
     }
   }
 }
