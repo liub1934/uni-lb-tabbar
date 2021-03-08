@@ -30,12 +30,13 @@ Github：[点击前往](https://github.com/liub1934/uni-lb-tabbar)
 
 H5 Demo：[点击预览](https://github.liubing.me/uni-lb-tabbar)
 
+> 提供了相关示例 Demo，可以自己在[插件市场](https://ext.dcloud.net.cn/plugin?id=4124)导入示例项目，或者直接[查看 Demo](https://github.com/liub1934/uni-lb-tabbar/tree/master/pages/demos)相关代码  
 > 如果问题最好去 github 反馈，插件市场评论区留下五星好评即可， [点我去反馈](https://github.com/liub1934/uni-lb-tabbar/issues/new)  
 > 最好提供一下使用的什么端，数据结构及大概的代码，我好复现找问题，不要直接提`怎么xxx报错了`等没意义的问题，神仙也不知道你为啥报错了。
 
 ## 兼容性
 
-App + H5 + 各平台小程序（头条小程序及 Nvue 暂不支持）
+App + nvue + H5 + 各平台小程序（头条小程序暂不支持）
 
 ## 引入插件
 
@@ -48,6 +49,24 @@ App + H5 + 各平台小程序（头条小程序及 Nvue 暂不支持）
   "autoscan": true,
   "custom": {
     "lb-tabbar-item": "@/components/lb-tabbar/lb-tabbar-item.vue"
+  }
+}
+```
+
+npm 安装引入
+
+```shell
+npm install uni-lb-tabbar
+```
+
+安装完插件后再`pages.json`加上如下配置：
+
+```json
+"easycom": {
+  "autoscan": true,
+  "custom": {
+    "lb-tabbar": "uni-lb-tabbar/components/lb-tabbar/lb-tabbar",
+    "lb-tabbar-item": "uni-lb-tabbar/components/lb-tabbar/lb-tabbar-item"
   }
 }
 ```
@@ -75,27 +94,30 @@ App + H5 + 各平台小程序（头条小程序及 Nvue 暂不支持）
 | active-color             | 选中标签的颜色                                               | String        | -                                        | #409EFF |
 | active-text-color        | 可单独定义未选中标签文字的颜色，不填则同`inactive-color`     | String        | -                                        | -       |
 | active-text-color        | 可单独定义选中标签文字的颜色,不填则同`active-color`          | String        | -                                        | -       |
+| safe-area-inset-bottom   | 苹果 X 等机型底部安全区                                      | Boolean       | true/false                               | true    |
+| hide-tabbar              | 是否隐藏原生的 tabbar                                        | Boolean       | true/false                               | true    |
 
 ### TabbarItem Props
 
 | 参数        | 说明                                                             | 类型          | 可选值     | 默认值 |
 | :---------- | :--------------------------------------------------------------- | ------------- | ---------- | ------ |
 | name        | 标签的 name 名称                                                 | String/Number | -          | -      |
-| text        | 标签底部文字，仅 nvue 支持，其他使用 slot 形式                   | String/Number | -          | -      |
+| text        | 标签底部文字，仅 nvue 支持，其他使用 默认 slot 形式              | String/Number | -          | -      |
 | icon        | icon 图标，可为图片地址，如果是 icon 图标不需要带前缀，如`icon-` | String        | -          | -      |
 | icon-prefix | icon 图标前缀                                                    | String        | -          | -      |
 | dot         | 是否显示小红点                                                   | Boolean       | true/false | -      |
 | info        | 图标右上角信息，nvue 文字显示有些问题                            | String/Number | -          | -      |
-| raisede     | 图标是否凸出，nvue 暂不支持                                      | Boolean       | true/false | -      |
+| raisede     | 图标是否凸出，nvue 不支持                                        | Boolean       | true/false | -      |
 
 ## Tabbar Event
 
-| 事件名 | 说明           | 参数                          |
-| :----- | :------------- | ----------------------------- |
-| change | 切换标签时触发 | 当前选中`TabbarItem`的`props` |
+| 事件名 | 说明           | 参数                              |
+| :----- | :------------- | --------------------------------- |
+| change | 切换标签时触发 | 当前选中`TabbarItem`的`props`     |
+| click  | 点击标签时触发 | 当前点击标签`TabbarItem`的`props` |
 
 ## Tabbar Methods
 
-| 方法名          | 说明                                          |
-| :-------------- | :-------------------------------------------- |
-| getTabbarHeight | 需要在`onReady`中调用，返回 Tabbar 的实际高度 |
+| 方法名          | 说明                                                            |
+| :-------------- | :-------------------------------------------------------------- |
+| getTabbarHeight | 需要在`onReady`中调用，返回 Tabbar 的实际高度，包括安全区的高度 |
