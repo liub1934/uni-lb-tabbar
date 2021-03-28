@@ -30,7 +30,6 @@ const state = {
       name: 'notice',
       text: '消息',
       icon: 'notice',
-      dot: true,
       info: 99,
       path: '/pages/demos/demo7/notice/notice'
     },

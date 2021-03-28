@@ -27,14 +27,12 @@ export default {
         {
           name: 'cart',
           text: '购物车',
-          icon: 'cart',
           icon: '/static/cart.png',
           iconActive: '/static/cart-active.png'
         },
         {
           name: 'plus',
           text: '发布',
-          icon: 'plus',
           icon: '/static/plus.png',
           iconActive: '/static/plus-active.png'
         },
@@ -48,7 +46,6 @@ export default {
         {
           name: 'mine',
           text: '我的',
-          icon: 'mine',
           icon: '/static/mine.png',
           iconActive: '/static/mine-active.png'
         }

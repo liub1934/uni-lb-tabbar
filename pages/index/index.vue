@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
   data () {
     return {
@@ -52,11 +53,13 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['SET_ACTIVE']),
     handleTap ({ path, type }) {
       if (type === 'switchtab') {
         uni.switchTab({
           url: path
         })
+        this.SET_ACTIVE('home')
       } else {
         uni.navigateTo({
           url: path

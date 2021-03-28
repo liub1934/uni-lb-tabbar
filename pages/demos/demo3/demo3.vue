@@ -41,7 +41,6 @@ export default {
           name: 'notice',
           text: '消息',
           icon: 'notice',
-          dot: true,
           info: 99
         },
         {
