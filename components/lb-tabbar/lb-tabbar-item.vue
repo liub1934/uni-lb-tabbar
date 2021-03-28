@@ -11,10 +11,12 @@
     <view :class="[
         'lb-tabbar-item__icon',
         `lb-tabbar-item__icon--${raisede ? 'raisede' : 'default'}`,
-        isAnimate ? `animate__animated animate__${tabbarInfo.animate}` : ''
+        isAnimate ? `animate__animated animate__${tabbarInfo.animate}` : '',
       ]"
       :style="{
-        transform: raisede ? `translateY(-${ty}px) scale(2)` : ''
+        height: tabbarInfo.iconSize,
+        lineHeight: tabbarInfo.iconSize,
+        transform: raisede ? `translateY(-${ty}px) scale(${tabbarInfo.raisedeScale})` : ''
       }">
       <image v-if="isImage"
         class="lb-tabbar-item__image"
@@ -32,20 +34,21 @@
           isActive ? 'lb-tabbar-item__icon--active' : ''
         ]"
         :style="{
-					width: tabbarInfo.iconSize,
-					height: tabbarInfo.iconSize,
-					lineHeight: tabbarInfo.iconSize,
+          width: tabbarInfo.iconSize,
+          height: tabbarInfo.iconSize,
+          lineHeight: tabbarInfo.iconSize,
           fontSize: tabbarInfo.iconSize,
           color: isActive ? tabbarInfo.activeColor : tabbarInfo.inactiveColor
         }">{{ iconCode }}</text>
-      <text v-if="dot"
+      <text v-if="dot || hasInfo"
         :class="[
-          'lb-tabbar-item__dot',
-          info || info === 0 ? 'lb-tabbar-item__dot--info' : ''
+          dot && !hasInfo ? 'lb-tabbar-item__dot' : '',
+          hasInfo ? 'lb-tabbar-item__dot--info' : '',
+          'lb-tabbar-item__dot--style'
         ]"
         :style="{
           backgroundColor: tabbarInfo.dotColor
-        }">{{ info || info === 0 ? info : '' }}</text>
+        }">{{ hasInfo ? info : '' }}</text>
     </view>
 
     <!-- #ifndef APP-NVUE -->
@@ -56,21 +59,30 @@
       :style="{
         fontSize: tabbarInfo.textSize,
         lineHeight: tabbarInfo.textHeight,
+        maxHeight: tabbarInfo.textHeight,
         color: isActive
           ? tabbarInfo.activeTextColor || tabbarInfo.activeColor
           : tabbarInfo.inactiveTextColor || tabbarInfo.inactiveColor
       }">
       <slot></slot>
+      <view v-if="raisede"
+        class="lb-tabbar-item__text--block"
+        :style="{
+          height: tabbarInfo.textHeight
+        }">
+      </view>
     </view>
     <!-- #endif -->
 
     <!-- #ifdef APP-NVUE -->
-    <text :class="[
+    <text v-if="text || raisede"
+      :class="[
         'lb-tabbar-item__text',
         isActive ? 'lb-tabbar-item__text--active' : ''
       ]"
       :style="{
         fontSize: tabbarInfo.textSize,
+        height: tabbarInfo.textHeight,
         lineHeight: tabbarInfo.textHeight,
         color: isActive
           ? tabbarInfo.activeTextColor || tabbarInfo.activeColor
@@ -124,6 +136,9 @@ export default {
       code = this.icon
       // #endif
       return code
+    },
+    hasInfo () {
+      return this.info || this.info === 0
     }
   },
   created () {

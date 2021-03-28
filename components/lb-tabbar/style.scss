@@ -41,6 +41,10 @@ lb-tabbar-item {
   position: relative;
 }
 
+.lb-tabbar-item__text {
+  overflow: hidden;
+}
+
 .lb-tabbar-item__text--active {
   transition-property: color;
   transition-duration: 0.3s;
@@ -74,23 +78,22 @@ lb-tabbar-item {
   /* #endif */
 }
 
-.lb-tabbar-item__dot {
-  width: 8px;
-  height: 8px;
+.lb-tabbar-item__dot--style {
   border-radius: 9999px;
   position: absolute;
   top: 0;
   right: 0;
 }
 
+.lb-tabbar-item__dot {
+  width: 8px;
+  height: 8px;
+}
+
 .lb-tabbar-item__dot--info {
-  /* #ifndef APP-NVUE */
-  width: inherit;
-  height: inherit;
-  line-height: 1.2;
-  /* #endif */
-  /* #ifdef APP-NVUE */
   height: 14px;
+  line-height: 14px;
+  /* #ifdef APP-NVUE */
   flex: 1;
   /* #endif */
   margin-top: 5px;

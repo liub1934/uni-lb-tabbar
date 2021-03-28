@@ -8,13 +8,13 @@
         backgroundColor: bgColor,
         paddingBottom: `${safeAreaHeight}px`
       }">
-      <slot></slot>
       <view v-if="border"
         class="lb-tabbar-border"
         :style="{
           backgroundColor: borderColor
         }">
       </view>
+      <slot></slot>
     </view>
     <view v-if="placeholder"
       class="lb-tabbar-placeholder"
@@ -93,6 +93,10 @@ export default {
     hideTabbar: {
       type: Boolean,
       default: true
+    },
+    raisedeScale: {
+      type: Number,
+      default: 2
     }
   },
   data () {
@@ -113,7 +117,8 @@ export default {
     },
     tabbarHeight () {
       const height = getPx(this.height) // 默认高度
-      const raisedeHeight = this.hasRaisede ? getPx(this.iconSize) : 0 // 凸起高度
+      const iconSize = getPx(this.iconSize)
+      const raisedeHeight = this.hasRaisede ? iconSize * this.raisedeScale / 2 : 0 // 凸起高度
       const tabbarHeight = height + this.safeAreaHeight + raisedeHeight // 整体高度
       return tabbarHeight
     }
@@ -128,9 +133,9 @@ export default {
       uni.hideTabBar()
     }
     const res = uni.getSystemInfoSync()
-    const { model, safeArea } = res
+    const { model, statusBarHeight } = res
     if (
-      (model.indexOf('iPhone') > -1 && safeArea && safeArea.top > 20) ||
+      (model.indexOf('iPhone') > -1 && statusBarHeight > 20) ||
       model.indexOf('iPhone X') > -1 ||
       model.indexOf('iPhone 1') > -1
     ) {
@@ -153,14 +158,7 @@ export default {
       this.$emit('change', this.activeItem)
     },
     tabbarItemsLength () {
-      if (this.hasRaisede) return
-      for (let i = 0; i < this.tabbarItems.length; i++) {
-        const item = this.tabbarItems[i]
-        if (item.raisede) {
-          this.hasRaisede = true
-          break
-        }
-      }
+      this.hasRaisede = !!this.tabbarItems.find(item => item.raisede)
     }
   }
 }
