@@ -13,5 +13,10 @@
 </script>
 
 <style lang="scss">
+/* #ifndef APP-NVUE */
 @import "./styles/index.scss";
+/* #endif */
+.iconfont {
+  font-family: iconfont;
+}
 </style>

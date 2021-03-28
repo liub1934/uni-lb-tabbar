@@ -1,0 +1,74 @@
+<template>
+  <view>
+    <lb-tabbar v-model="active"
+      @change="handleChange">
+      <lb-tabbar-item v-for="item in tabbars"
+        :key="item.name"
+        :name="item.name"
+        :icon="item.icon"
+        :text="item.text"
+        :dot="item.dot"
+        :info="item.info"
+        :raisede="item.raisede"
+        icon-prefix="iconfont">
+      </lb-tabbar-item>
+    </lb-tabbar>
+  </view>
+</template>
+
+<script>
+export default {
+  data () {
+    return {
+      active: 'home',
+      tabbars: [
+        {
+          name: 'home',
+          text: '首页',
+          icon: '\ue623',
+          dot: true
+        },
+        {
+          name: 'cart',
+          text: '购物车',
+          icon: '\ue674'
+        },
+        {
+          name: 'plus',
+          text: '',
+          icon: '\ue66f',
+          raisede: true
+        },
+        {
+          name: 'notice',
+          text: '消息',
+          icon: '\ue600',
+          dot: true,
+          info: 99
+        },
+        {
+          name: 'mine',
+          text: '我的',
+          icon: '\ue607'
+        }
+      ]
+    }
+  },
+  beforeCreate() {
+    const domModule = uni.requireNativePlugin('dom')
+    domModule.addRule('fontFace', {
+      'fontFamily': 'iconfont',
+      'src': "url('https://at.alicdn.com/t/font_2351863_kooswlaux2a.ttf')"
+    })
+  },
+  methods: {
+    handleChange (e) {
+      console.log('change::', e)
+      uni.showToast({
+        title: e.name,
+        icon: 'none'
+      })
+    }
+  }
+}
+</script>
