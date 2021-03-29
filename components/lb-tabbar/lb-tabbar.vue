@@ -11,7 +11,8 @@
       <view v-if="border"
         class="lb-tabbar-border"
         :style="{
-          backgroundColor: borderColor
+          backgroundColor: borderColor,
+          top: raisedeHeight + 'px'
         }">
       </view>
       <slot></slot>
@@ -43,9 +44,9 @@ export default {
       type: String,
       default: '12px'
     },
-    textHeight: {
+    textTop: {
       type: String,
-      default: '18px'
+      default: '5px'
     },
     dotColor: {
       type: String,
@@ -115,10 +116,15 @@ export default {
     safeAreaHeight () {
       return this.isIphoneX && this.safeAreaInsetBottom ? SAFE_AREA_INSET_BOTTOM : 0 // 苹果X等机型安全区高度
     },
+    iconHeight () {
+      return getPx(this.iconSize)
+    },
+    raisedeHeight () {
+      return this.hasRaisede ? this.iconHeight * this.raisedeScale / 2 : 0 // 凸起高度
+    },
     tabbarHeight () {
       const height = getPx(this.height) // 默认高度
-      const iconSize = getPx(this.iconSize)
-      const raisedeHeight = this.hasRaisede ? iconSize * this.raisedeScale / 2 : 0 // 凸起高度
+      const raisedeHeight = this.hasRaisede ? this.iconHeight * this.raisedeScale / 2 : 0 // 凸起高度
       const tabbarHeight = height + this.safeAreaHeight + raisedeHeight // 整体高度
       return tabbarHeight
     }

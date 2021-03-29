@@ -5,7 +5,8 @@
       isActive ? 'lb-tabbar-item--active' : ''
     ]"
     :style="{
-      height: tabbarInfo.height
+      paddingTop: paddingBT + raisedeHeight + 'px',
+      paddingBottom: paddingBT + 'px'
     }"
     @tap="handleTap">
     <view :class="[
@@ -58,8 +59,9 @@
       ]"
       :style="{
         fontSize: tabbarInfo.textSize,
-        lineHeight: tabbarInfo.textHeight,
-        maxHeight: tabbarInfo.textHeight,
+        lineHeight: tabbarInfo.textSize,
+        maxHeight: tabbarInfo.textSize,
+        marginTop: tabbarInfo.textTop,
         color: isActive
           ? tabbarInfo.activeTextColor || tabbarInfo.activeColor
           : tabbarInfo.inactiveTextColor || tabbarInfo.inactiveColor
@@ -68,7 +70,7 @@
       <view v-if="raisede"
         class="lb-tabbar-item__text--block"
         :style="{
-          height: tabbarInfo.textHeight
+          height: tabbarInfo.textSize
         }">
       </view>
     </view>
@@ -82,8 +84,9 @@
       ]"
       :style="{
         fontSize: tabbarInfo.textSize,
-        height: tabbarInfo.textHeight,
-        lineHeight: tabbarInfo.textHeight,
+        height: tabbarInfo.textSize,
+        lineHeight: tabbarInfo.textSize,
+        marginTop: tabbarInfo.textTop,
         color: isActive
           ? tabbarInfo.activeTextColor || tabbarInfo.activeColor
           : tabbarInfo.inactiveTextColor || tabbarInfo.inactiveColor
@@ -107,7 +110,6 @@ export default {
   inject: ['tabbar'],
   data () {
     return {
-      height: '',
       tabbarInfo: {}
     }
   },
@@ -125,10 +127,20 @@ export default {
         !(this.raisede && this.tabbarInfo.closeAnimateOnRaisede)
       )
     },
+    height () {
+      return getPx(this.tabbarInfo.height)
+    },
+    iconHeight () {
+      return getPx(this.tabbarInfo.iconSize)
+    },
+    textSize () {
+      return getPx(this.tabbarInfo.textSize)
+    },
+    textTop () {
+      return getPx(this.tabbarInfo.textTop)
+    },
     ty () {
-      const height = getPx(this.tabbarInfo.height)
-      const textHeight = getPx(this.tabbarInfo.textHeight)
-      return height / 2 - textHeight / 2
+      return this.height / 2 - (this.textSize + this.textTop) / 2
     },
     iconCode () {
       let code = ''
@@ -139,6 +151,15 @@ export default {
     },
     hasInfo () {
       return this.info || this.info === 0
+    },
+    paddingBT () {
+      return (this.height - this.iconHeight - this.textSize - this.textTop) / 2
+    },
+    hasRaisede () {
+      return this.tabbar.hasRaisede
+    },
+    raisedeHeight () {
+      return this.hasRaisede ? this.iconHeight * this.tabbarInfo.raisedeScale / 2 : 0 // 凸起高度
     }
   },
   created () {
