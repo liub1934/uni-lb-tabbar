@@ -195,31 +195,31 @@ export default {
     raisedeHeight () {
       return this.hasRaisede ? this.iconHeight * this.tabbarInfo.raisedeScale / 2 : 0 // 凸起高度
     },
-		infoLength () {
-			return this.hasInfo ? (this.info + '').length : 0
-		}
+    infoLength () {
+      return this.hasInfo ? (this.info + '').length : 0
+    }
   },
   created () {
     this.tabbarInfo = this.tabbar._props
     this.tabbar.tabbarItems.push(this._props)
   },
   mounted() {
-		// #ifdef APP-NVUE
+    // #ifdef APP-NVUE
     this.setNvueDot()
-		// #endif
+    // #endif
   },
   methods: {
     handleTap () {
       this.tabbar.active = this.name
       this.$emit('click', this._props)
     },
-		// #ifdef APP-NVUE
+    // #ifdef APP-NVUE
     setNvueDot () {
-			if (this.dot || this.hasInfo) {
-				this.$nextTick(() => {
-					const $el = this.$refs.item
-					dom.getComponentRect($el, res => {
-						this.itemWidth = res.size.width
+      if (this.dot || this.hasInfo) {
+        this.$nextTick(() => {
+          const $el = this.$refs.item
+          dom.getComponentRect($el, res => {
+            this.itemWidth = res.size.width
             const halfWidth = this.itemWidth / 2
             if (this.dot) {
               this.dotLeft = halfWidth - 8
@@ -228,14 +228,14 @@ export default {
               const length = this.infoLength > 1 ? this.infoLength -1 : this.infoLength
               this.dotLeft = halfWidth - 8 * length
             }
-						this.nvueDotShow = true
-					})
-				})
-			}
+            this.nvueDotShow = true
+          })
+        })
+      }
     }
-		// #endif
+    // #endif
   },
-	// #ifdef APP-NVUE
+  // #ifdef APP-NVUE
   watch: {
     dot () {
       this.setNvueDot()
@@ -244,7 +244,7 @@ export default {
       this.setNvueDot()
     }
   }
-	// #endif
+  // #endif
 }
 </script>
 
