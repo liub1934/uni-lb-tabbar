@@ -50,8 +50,12 @@ export default {
           type: 'switchtab'
         },
         {
-          title: 'nvue中使用',
+          title: 'nvue中使用(icon图标)',
           path: '/pages/demos/demo8/demo8'
+        },
+        {
+          title: 'nvue中使用(图片图标)',
+          path: '/pages/demos/demo9/demo9'
         }
       ]
     }

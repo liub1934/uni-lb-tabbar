@@ -71,6 +71,12 @@
 			"style": {
 				"navigationBarTitleText": "nvue使用"
 			}
+		},
+		{
+			"path": "pages/demos/demo9/demo9",
+			"style": {
+				"navigationBarTitleText": "nvue使用"
+			}
 		}
 	],
 	"tabBar": {

@@ -5,12 +5,12 @@
       <lb-tabbar-item v-for="item in tabbars"
         :key="item.name"
         :name="item.name"
-        :icon="item.icon"
+        :icon="active === item.name ? item.iconActive : item.icon"
         :text="item.text"
         :dot="item.dot"
         :info="item.info"
-        :raisede="item.raisede"
-        icon-prefix="iconfont">
+        :raisede="item.raisede">
+        {{ item.text }}
       </lb-tabbar-item>
     </lb-tabbar>
   </view>
@@ -25,40 +25,41 @@ export default {
         {
           name: 'home',
           text: '首页',
-          icon: '\ue623',
-					dot: true
+          icon: '/static/home.png',
+          iconActive: '/static/home-active.png',
+          dot: true
         },
         {
           name: 'cart',
           text: '购物车',
-          icon: '\ue674'
+          icon: '/static/cart.png',
+          iconActive: '/static/cart-active.png'
         },
         {
           name: 'plus',
           text: '发布',
-          icon: '\ue66f',
+          icon: 'plus',
+          icon: '/static/plus.png',
+          iconActive: '/static/plus-active.png',
           raisede: true
         },
         {
           name: 'notice',
           text: '消息',
-          icon: '\ue600',
+          icon: 'notice',
+          icon: '/static/notice.png',
+          iconActive: '/static/notice-active.png',
           info: 99
         },
         {
           name: 'mine',
           text: '我的',
-          icon: '\ue607'
+          icon: 'mine',
+          icon: '/static/mine.png',
+          iconActive: '/static/mine-active.png'
         }
       ]
     }
-  },
-  beforeCreate() {
-    const domModule = uni.requireNativePlugin('dom')
-    domModule.addRule('fontFace', {
-      'fontFamily': 'iconfont',
-      'src': "url('https://at.alicdn.com/t/font_2351863_kooswlaux2a.ttf')"
-    })
   },
   methods: {
     handleChange (e) {
