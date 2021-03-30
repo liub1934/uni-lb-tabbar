@@ -1,5 +1,6 @@
 <template>
-  <view :class="[
+  <view ref="item"
+    :class="[
       'lb-tabbar-item',
       'animate__animated',
       isActive ? 'lb-tabbar-item--active' : ''
@@ -19,6 +20,7 @@
         lineHeight: tabbarInfo.iconSize,
         transform: raisede ? `translateY(-${ty}px) scale(${tabbarInfo.raisedeScale})` : ''
       }">
+      <!-- 图片图标 -->
       <image v-if="isImage"
         class="lb-tabbar-item__image"
         :src="icon"
@@ -27,6 +29,8 @@
           height: tabbarInfo.iconSize
         }">
       </image>
+
+      <!-- icon图标 -->
       <text v-else
         :class="[
           'lb-tabbar-icon',
@@ -41,6 +45,9 @@
           fontSize: tabbarInfo.iconSize,
           color: isActive ? tabbarInfo.activeColor : tabbarInfo.inactiveColor
         }">{{ iconCode }}</text>
+
+      <!-- 非nvue dot info显示 -->
+      <!-- #ifndef APP-NVUE -->
       <text v-if="dot || hasInfo"
         :class="[
           dot && !hasInfo ? 'lb-tabbar-item__dot' : '',
@@ -50,8 +57,28 @@
         :style="{
           backgroundColor: tabbarInfo.dotColor
         }">{{ hasInfo ? info : '' }}</text>
+      <!-- #endif -->
     </view>
 
+    <!-- nvue dot info 显示 -->
+    <!-- #ifdef APP-NVUE -->
+    <text v-if="dot || hasInfo"
+      :class="[
+        'lb-tabbar-item__dot--nvue',
+        'lb-tabbar-item__dot--style',
+        dot && !hasInfo ? 'lb-tabbar-item__dot' : '',
+        hasInfo ? 'lb-tabbar-item__dot--info' : '',
+        hasInfo ? 'lb-tabbar-item__dot--info' : '',
+        nvueDotShow ? 'lb-tabbar-item__dot--show' : ''
+      ]"
+      :style="{
+        backgroundColor: tabbarInfo.dotColor,
+        top: paddingBT + raisedeHeight + 'px',
+        right: dotLeft + 'px'
+      }">{{ hasInfo ? info : '' }}</text>
+    <!-- #endif -->
+
+    <!-- 非nvue图标文字 -->
     <!-- #ifndef APP-NVUE -->
     <view :class="[
         'lb-tabbar-item__text',
@@ -76,6 +103,7 @@
     </view>
     <!-- #endif -->
 
+    <!-- nvue图标文字 -->
     <!-- #ifdef APP-NVUE -->
     <text v-if="text || raisede"
       :class="[
@@ -96,6 +124,9 @@
 </template>
 
 <script>
+// #ifdef APP-NVUE
+const dom = uni.requireNativePlugin('dom')
+// #endif
 import { getPx } from './utils'
 export default {
   props: {
@@ -110,7 +141,10 @@ export default {
   inject: ['tabbar'],
   data () {
     return {
-      tabbarInfo: {}
+      tabbarInfo: {},
+      itemWidth: 0,
+      dotLeft: 0,
+      nvueDotShow: false
     }
   },
   computed: {
@@ -160,18 +194,57 @@ export default {
     },
     raisedeHeight () {
       return this.hasRaisede ? this.iconHeight * this.tabbarInfo.raisedeScale / 2 : 0 // 凸起高度
-    }
+    },
+		infoLength () {
+			return this.hasInfo ? (this.info + '').length : 0
+		}
   },
   created () {
     this.tabbarInfo = this.tabbar._props
     this.tabbar.tabbarItems.push(this._props)
   },
+  mounted() {
+		// #ifdef APP-NVUE
+    this.setNvueDot()
+		// #endif
+  },
   methods: {
     handleTap () {
       this.tabbar.active = this.name
       this.$emit('click', this._props)
+    },
+		// #ifdef APP-NVUE
+    setNvueDot () {
+			if (this.dot || this.hasInfo) {
+				this.$nextTick(() => {
+					const $el = this.$refs.item
+					dom.getComponentRect($el, res => {
+						this.itemWidth = res.size.width
+            const halfWidth = this.itemWidth / 2
+            if (this.dot) {
+              this.dotLeft = halfWidth - 8
+            }
+            if (this.hasInfo) {
+              const length = this.infoLength > 1 ? this.infoLength -1 : this.infoLength
+              this.dotLeft = halfWidth - 8 * length
+            }
+						this.nvueDotShow = true
+					})
+				})
+			}
+    }
+		// #endif
+  },
+	// #ifdef APP-NVUE
+  watch: {
+    dot () {
+      this.setNvueDot()
+    },
+    info () {
+      this.setNvueDot()
     }
   }
+	// #endif
 }
 </script>
 

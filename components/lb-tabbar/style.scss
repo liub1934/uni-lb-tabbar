@@ -91,6 +91,16 @@ lb-tabbar-item {
   height: 8px;
 }
 
+.lb-tabbar-item__dot--nvue {
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 0.1s;
+}
+
+.lb-tabbar-item__dot--show {
+  opacity: 1;
+}
+
 .lb-tabbar-item__dot--info {
   height: 14px;
   line-height: 14px;
