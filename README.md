@@ -81,7 +81,8 @@ npm install uni-lb-tabbar
 | height                   | Tabbar 高度                                                  | String        | -                                        | 50px    |
 | icon-size                | 图标大小                                                     | String        | -                                        | 22px    |
 | text-size                | 文字大小                                                     | String        | -                                        | 12px    |
-| text-height              | 文字高度                                                     | String        | -                                        | 18px    |
+| text-top `v1.0.3新增`    | 文字的 margin-top                                            | String        | -                                        | 5px     |
+| ~~text-height~~          | ~~文字高度~~ `v1.0.3弃用 文字高度同text-size`                | String        | -                                        | 18px    |
 | dot-color                | 小红点颜色                                                   | String        | -                                        | #F56C6C |
 | fixed                    | 是否固定在底部                                               | Boolean       | true/false                               | true    |
 | placeholder              | 是否生成等高的占位块                                         | Boolean       | true/false                               | true    |
@@ -96,6 +97,7 @@ npm install uni-lb-tabbar
 | active-text-color        | 可单独定义选中标签文字的颜色,不填则同`active-color`          | String        | -                                        | -       |
 | safe-area-inset-bottom   | 苹果 X 等机型底部安全区                                      | Boolean       | true/false                               | true    |
 | hide-tabbar              | 是否隐藏原生的 tabbar                                        | Boolean       | true/false                               | true    |
+| raisede-scale            | 凸起放大倍数，默认 2 倍                                      | Number        | -                                        | 2       |
 
 ### TabbarItem Props
 
@@ -106,8 +108,8 @@ npm install uni-lb-tabbar
 | icon        | icon 图标，可为图片地址，如果是 icon 图标不需要带前缀，如`icon-` | String        | -          | -      |
 | icon-prefix | icon 图标前缀                                                    | String        | -          | -      |
 | dot         | 是否显示小红点                                                   | Boolean       | true/false | -      |
-| info        | 图标右上角信息，nvue 文字显示有些问题                            | String/Number | -          | -      |
-| raisede     | 图标是否凸出，nvue 不支持                                        | Boolean       | true/false | -      |
+| info        | 图标右上角信息                                                   | String/Number | -          | -      |
+| raisede     | 图标是否凸出                                                     | Boolean       | true/false | -      |
 
 ## Tabbar Event
 
