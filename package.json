@@ -1,6 +1,6 @@
 {
   "name": "uni-lb-tabbar",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "uniapp自定义tabbar。",
   "main": "components/lb-tabbar",
   "scripts": {
